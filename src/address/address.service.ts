@@ -1,8 +1,8 @@
 import { HttpException, Inject, Injectable } from '@nestjs/common';
 import { User } from '@prisma/client';
 import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
-import { PrismaService } from 'src/common/prisma.service';
-import { ValidationService } from 'src/common/validation.service';
+import { PrismaService } from '../common/prisma.service';
+import { ValidationService } from '../common/validation.service';
 import {
   AddressResponse,
   CreateAddressRequest,
@@ -121,15 +121,19 @@ export class AddressService {
       throw new HttpException('Contact not found', 404);
     }
 
-    let address = await this.prismaService.address.findFirst({
+    const address = await this.prismaService.address.findFirst({
       where: {
         id: updateRequest.id,
         contact_id: updateRequest.contact_id,
       },
     });
 
+    if (!address) {
+      throw new HttpException('Contact not found', 404);
+    }
+
     // insert atau create new contact
-    address = await this.prismaService.address.update({
+    const result = await this.prismaService.address.update({
       where: {
         id: updateRequest.id,
         contact_id: updateRequest.contact_id,
@@ -138,12 +142,12 @@ export class AddressService {
     });
 
     return {
-      id: address.id,
-      street: address.street,
-      city: address.city,
-      province: address.province,
-      country: address.country,
-      postal_code: address.postal_code,
+      id: result.id,
+      street: result.street,
+      city: result.city,
+      province: result.province,
+      country: result.country,
+      postal_code: result.postal_code,
     };
   }
 

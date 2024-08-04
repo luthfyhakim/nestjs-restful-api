@@ -26,7 +26,7 @@ describe('UserController', () => {
 
   describe('POST /api/users', () => {
     beforeEach(async () => {
-      await testService.deleteUser();
+      await testService.deleteAll();
     });
 
     it('should be rejected if request is invalid', async () => {
@@ -80,7 +80,8 @@ describe('UserController', () => {
 
   describe('POST /api/users/login', () => {
     beforeEach(async () => {
-      await testService.deleteUser();
+      await testService.deleteAll();
+
       await testService.createUser();
     });
 
@@ -117,7 +118,8 @@ describe('UserController', () => {
 
   describe('GET /api/users/current', () => {
     beforeEach(async () => {
-      await testService.deleteUser();
+      await testService.deleteAll();
+
       await testService.createUser();
     });
 
@@ -147,7 +149,8 @@ describe('UserController', () => {
 
   describe('PATCH /api/users/current', () => {
     beforeEach(async () => {
-      await testService.deleteUser();
+      await testService.deleteAll();
+
       await testService.createUser();
     });
 
@@ -211,7 +214,8 @@ describe('UserController', () => {
 
   describe('DELETE /api/users/current', () => {
     beforeEach(async () => {
-      await testService.deleteUser();
+      await testService.deleteAll();
+
       await testService.createUser();
     });
 

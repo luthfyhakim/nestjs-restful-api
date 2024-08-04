@@ -1,0 +1,125 @@
+POST http://localhost:3000/api/users
+Content-Type: application/json
+Accept: application/json
+
+{
+  "username": "luthfyhakim",
+  "name": "Luthfi Hakim",
+  "password": "secret"
+}
+
+### Login
+
+POST http://localhost:3000/api/users/login
+Content-Type: application/json
+Accept: application/json
+
+{
+  "username": "luthfyhakim",
+  "password": "secret"
+}
+
+### Get User
+GET http://localhost:3000/api/users/current
+Accept: application/json
+Authorization: bb2d339f-3bec-42c7-96c4-2f8fc4b6bf7f
+
+### Logout User
+DELETE http://localhost:3000/api/users/current
+Accept: application/json
+Authorization: 85ed19cb-52ed-4de7-9227-ca3c4963ad6f
+
+### Update User
+PATCH http://localhost:3000/api/users/current
+Accept: application/json
+Content-Type: application/json
+Authorization: f5fc1bb9-a979-4f95-9173-8d42d0ac8d52
+
+{
+  "password": "secret12345"
+}
+
+### Create contact
+POST http://localhost:3000/api/contacts
+Content-Type: application/json
+Accept: application/json
+Authorization: bb2d339f-3bec-42c7-96c4-2f8fc4b6bf7f
+
+{
+  "first_name": "Aulia",
+  "last_name": "Luthfi",
+  "email": "aulia@example.com",
+  "phone": "089999999"
+}
+
+### Update contact
+PUT http://localhost:3000/api/contacts/267
+Content-Type: application/json
+Accept: application/json
+Authorization: bb2d339f-3bec-42c7-96c4-2f8fc4b6bf7f
+
+{
+  "first_name": "Ecobag",
+  "last_name": "Hakim",
+  "email": "ecobag@example.com",
+  "phone": "089999999"
+}
+
+
+### Get contact
+GET http://localhost:3000/api/contacts/267
+Accept: application/json
+Authorization: bb2d339f-3bec-42c7-96c4-2f8fc4b6bf7f
+
+### Delete contact
+DELETE http://localhost:3000/api/contacts/333
+Accept: application/json
+Authorization: f5fc1bb9-a979-4f95-9173-8d42d0ac8d52
+
+### Search contact
+GET http://localhost:3000/api/contacts
+Accept: application/json
+Authorization: f5fc1bb9-a979-4f95-9173-8d42d0ac8d52
+
+### Create Address
+POST http://localhost:3000/api/contacts/267/addresses
+Content-Type: application/json
+Accept: application/json
+Authorization: bb2d339f-3bec-42c7-96c4-2f8fc4b6bf7f
+
+{
+  "street": "jalan contoh",
+  "city": "kota contoh",
+  "province": "provinsi contoh",
+  "country": "negara contoh",
+  "postal_code": "23434"
+}
+
+### Get Address
+GET http://localhost:3000/api/contacts/267/addresses/109
+Accept: application/json
+Authorization: bb2d339f-3bec-42c7-96c4-2f8fc4b6bf7f
+
+### List Address
+GET http://localhost:3000/api/contacts/267/addresses
+Accept: application/json
+Authorization: bb2d339f-3bec-42c7-96c4-2f8fc4b6bf7f
+
+### Update Address
+PUT http://localhost:3000/api/contacts/332/addresses/171
+Content-Type: application/json
+Accept: application/json
+Authorization: f5fc1bb9-a979-4f95-9173-8d42d0ac8d52
+
+{
+  "street": "jalan contoh updated",
+  "city": "kota contoh updated",
+  "province": "provinsi contoh",
+  "country": "negara contoh",
+  "postal_code": "23434"
+}
+
+### Remove Address
+DELETE http://localhost:3000/api/contacts/332/addresses/172
+Accept: application/json
+Authorization: f5fc1bb9-a979-4f95-9173-8d42d0ac8d52

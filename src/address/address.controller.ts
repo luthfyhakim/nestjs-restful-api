@@ -10,16 +10,16 @@ import {
   Put,
 } from '@nestjs/common';
 import { AddressService } from './address.service';
-import { WebResponse } from 'src/model/web.model';
+import { WebResponse } from '../model/web.model';
 import {
   AddressResponse,
   CreateAddressRequest,
   DeleteAddressRequest,
   GetAddressRequest,
   UpdateAddressRequest,
-} from 'src/model/address.model';
+} from '../model/address.model';
 import { User } from '@prisma/client';
-import { Auth } from 'src/common/auth.decorator';
+import { Auth } from '../common/auth.decorator';
 
 @Controller('/api/contacts/:contactId/addresses')
 export class AddressController {
@@ -61,7 +61,7 @@ export class AddressController {
   async update(
     @Auth() user: User,
     @Param('contactId', ParseIntPipe) contactId: number,
-    @Param('addresstId', ParseIntPipe) addressId: number,
+    @Param('addressId', ParseIntPipe) addressId: number,
     @Body() request: UpdateAddressRequest,
   ): Promise<WebResponse<AddressResponse>> {
     request.contact_id = contactId;

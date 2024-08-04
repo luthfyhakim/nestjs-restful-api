@@ -26,9 +26,7 @@ describe('AddressController', () => {
 
   describe('POST /api/contacts/:contactId/address', () => {
     beforeEach(async () => {
-      await testService.deleteAddress();
-      await testService.deleteContact();
-      await testService.deleteUser();
+      await testService.deleteAll();
 
       await testService.createUser();
       await testService.createContact();
@@ -76,15 +74,13 @@ describe('AddressController', () => {
       expect(response.body.data.city).toBe('kota test');
       expect(response.body.data.province).toBe('provinsi test');
       expect(response.body.data.country).toBe('negara test');
-      expect(response.body.data.postal_code).toBe('111');
+      expect(response.body.data.postal_code).toBe('1111');
     });
   });
 
   describe('GET /api/contacts/:contactId/address/:addressId', () => {
     beforeEach(async () => {
-      await testService.deleteAddress();
-      await testService.deleteContact();
-      await testService.deleteUser();
+      await testService.deleteAll();
 
       await testService.createUser();
       await testService.createContact();
@@ -96,7 +92,7 @@ describe('AddressController', () => {
       const address = await testService.getAddress();
 
       const response = await request(app.getHttpServer())
-        .get(`/api/contacts/${contact.id + 1}/addresses/:${address.id}`)
+        .get(`/api/contacts/${contact.id + 1}/addresses/${address.id}`)
         .set('Authorization', 'test');
 
       logger.info(response.body);
@@ -110,7 +106,7 @@ describe('AddressController', () => {
       const address = await testService.getAddress();
 
       const response = await request(app.getHttpServer())
-        .get(`/api/contacts/${contact.id}/addresses/:${address.id + 1}`)
+        .get(`/api/contacts/${contact.id}/addresses/${address.id + 1}`)
         .set('Authorization', 'test');
 
       logger.info(response.body);
@@ -124,7 +120,7 @@ describe('AddressController', () => {
       const address = await testService.getAddress();
 
       const response = await request(app.getHttpServer())
-        .get(`/api/contacts/${contact.id}/addresses/:${address.id}`)
+        .get(`/api/contacts/${contact.id}/addresses/${address.id}`)
         .set('Authorization', 'test');
 
       logger.info(response.body);
@@ -135,15 +131,13 @@ describe('AddressController', () => {
       expect(response.body.data.city).toBe('kota test');
       expect(response.body.data.province).toBe('provinsi test');
       expect(response.body.data.country).toBe('negara test');
-      expect(response.body.data.postal_code).toBe('111');
+      expect(response.body.data.postal_code).toBe('1111');
     });
   });
 
   describe('PUT /api/contacts/:contactId/address/:addressId', () => {
     beforeEach(async () => {
-      await testService.deleteAddress();
-      await testService.deleteContact();
-      await testService.deleteUser();
+      await testService.deleteAll();
 
       await testService.createUser();
       await testService.createContact();
@@ -179,11 +173,11 @@ describe('AddressController', () => {
         .put(`/api/contacts/${contact.id + 1}/addresses/${address.id}`)
         .set('Authorization', 'test')
         .send({
-          street: 'jalan test',
-          city: 'kota test',
-          province: 'provinsi test',
-          country: 'negara test',
-          postal_code: '1111',
+          street: 'jalan test updated',
+          city: 'kota test updated',
+          province: 'provinsi test updated',
+          country: 'negara test updated',
+          postal_code: '2222',
         });
 
       logger.info(response.body);
@@ -200,11 +194,11 @@ describe('AddressController', () => {
         .put(`/api/contacts/${contact.id}/addresses/${address.id + 1}`)
         .set('Authorization', 'test')
         .send({
-          street: 'jalan test',
-          city: 'kota test',
-          province: 'provinsi test',
-          country: 'negara test',
-          postal_code: '1111',
+          street: 'jalan test updated',
+          city: 'kota test updated',
+          province: 'provinsi test updated',
+          country: 'negara test updated',
+          postal_code: '2222',
         });
 
       logger.info(response.body);
@@ -221,30 +215,28 @@ describe('AddressController', () => {
         .put(`/api/contacts/${contact.id}/addresses/${address.id}`)
         .set('Authorization', 'test')
         .send({
-          street: 'jalan test',
-          city: 'kota test',
-          province: 'provinsi test',
-          country: 'negara test',
-          postal_code: '1111',
+          street: 'jalan test updated',
+          city: 'kota test updated',
+          province: 'provinsi test updated',
+          country: 'negara test updated',
+          postal_code: '2222',
         });
 
       logger.info(response.body);
 
       expect(response.status).toBe(200);
       expect(response.body.data.id).toBeDefined();
-      expect(response.body.data.street).toBe('jalan test');
-      expect(response.body.data.city).toBe('kota test');
-      expect(response.body.data.province).toBe('provinsi test');
-      expect(response.body.data.country).toBe('negara test');
-      expect(response.body.data.postal_code).toBe('111');
+      expect(response.body.data.street).toBe('jalan test updated');
+      expect(response.body.data.city).toBe('kota test updated');
+      expect(response.body.data.province).toBe('provinsi test updated');
+      expect(response.body.data.country).toBe('negara test updated');
+      expect(response.body.data.postal_code).toBe('2222');
     });
   });
 
   describe('DELETE /api/contacts/:contactId/address/:addressId', () => {
     beforeEach(async () => {
-      await testService.deleteAddress();
-      await testService.deleteContact();
-      await testService.deleteUser();
+      await testService.deleteAll();
 
       await testService.createUser();
       await testService.createContact();
@@ -299,9 +291,7 @@ describe('AddressController', () => {
 
   describe('GET /api/contacts/:contactId/address', () => {
     beforeEach(async () => {
-      await testService.deleteAddress();
-      await testService.deleteContact();
-      await testService.deleteUser();
+      await testService.deleteAll();
 
       await testService.createUser();
       await testService.createContact();
@@ -337,7 +327,7 @@ describe('AddressController', () => {
       expect(response.body.data[0].city).toBe('kota test');
       expect(response.body.data[0].province).toBe('provinsi test');
       expect(response.body.data[0].country).toBe('negara test');
-      expect(response.body.data[0].postal_code).toBe('111');
+      expect(response.body.data[0].postal_code).toBe('1111');
     });
   });
 });

@@ -26,8 +26,7 @@ describe('ContactController', () => {
 
   describe('POST /api/contacts', () => {
     beforeEach(async () => {
-      await testService.deleteContact();
-      await testService.deleteUser();
+      await testService.deleteAll();
 
       await testService.createUser();
     });
@@ -63,18 +62,17 @@ describe('ContactController', () => {
       logger.info(response.body);
 
       expect(response.status).toBe(200);
-      expect(response.body.data.username).toBeDefined();
+      expect(response.body.data.id).toBeDefined();
       expect(response.body.data.first_name).toBe('test');
       expect(response.body.data.last_name).toBe('test');
-      expect(response.body.data.email).toBe('test@eample.com');
+      expect(response.body.data.email).toBe('test@example.com');
       expect(response.body.data.phone).toBe('9999');
     });
   });
 
   describe('GET /api/contacts/:contactId', () => {
     beforeEach(async () => {
-      await testService.deleteContact();
-      await testService.deleteUser();
+      await testService.deleteAll();
 
       await testService.createUser();
       await testService.createContact();
@@ -101,18 +99,17 @@ describe('ContactController', () => {
       logger.info(response.body);
 
       expect(response.status).toBe(200);
-      expect(response.body.data.username).toBeDefined();
+      expect(response.body.data.id).toBeDefined();
       expect(response.body.data.first_name).toBe('test');
       expect(response.body.data.last_name).toBe('test');
-      expect(response.body.data.email).toBe('test@eample.com');
+      expect(response.body.data.email).toBe('test@example.com');
       expect(response.body.data.phone).toBe('9999');
     });
   });
 
   describe('PUT /api/contacts/:contactId', () => {
     beforeEach(async () => {
-      await testService.deleteContact();
-      await testService.deleteUser();
+      await testService.deleteAll();
 
       await testService.createUser();
       await testService.createContact();
@@ -151,18 +148,17 @@ describe('ContactController', () => {
       logger.info(response.body);
 
       expect(response.status).toBe(200);
-      expect(response.body.data.username).toBeDefined();
+      expect(response.body.data.id).toBeDefined();
       expect(response.body.data.first_name).toBe('test updated');
       expect(response.body.data.last_name).toBe('test updated');
-      expect(response.body.data.email).toBe('test_updated@eample.com');
+      expect(response.body.data.email).toBe('test_updated@example.com');
       expect(response.body.data.phone).toBe('8888');
     });
   });
 
   describe('DELETE /api/contacts/:contactId', () => {
     beforeEach(async () => {
-      await testService.deleteContact();
-      await testService.deleteUser();
+      await testService.deleteAll();
 
       await testService.createUser();
       await testService.createContact();
@@ -195,8 +191,7 @@ describe('ContactController', () => {
 
   describe('GET /api/contacts', () => {
     beforeEach(async () => {
-      await testService.deleteContact();
-      await testService.deleteUser();
+      await testService.deleteAll();
 
       await testService.createUser();
       await testService.createContact();

@@ -1,8 +1,8 @@
 {
   "name": "belajar-nestjs-restful-api",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "Belajar NestJs Restful API",
+  "author": "Aulia Luthfi Hakim",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
@@ -13,9 +13,9 @@
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:cov": "jest --coverage",
+    "test": "jest --runInBand",
+    "test:watch": "jest --watch --runInBand",
+    "test:cov": "jest --coverage --runInBand",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand"
   },
   "dependencies": {

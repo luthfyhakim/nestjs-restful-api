@@ -92,9 +92,6 @@ export class ContactController {
       page: page || 1,
       size: size || 10,
     };
-    const result = await this.contactService.search(user, request);
-    return {
-      data: result,
-    };
+    return this.contactService.search(user, request);
   }
 }
